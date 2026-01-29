@@ -127,7 +127,7 @@ class encoder_block(nn.Module):
         # Residual connection,
         if self.use_spatial:
             spa_values = spa_values.permute(0, 2, 1, 3).contiguous()
-            values = self.addAndNorm(hist_hidden_enc, spa_values, time_values)  # 有问题
+            values = self.addAndNorm(hist_hidden_enc, spa_values, time_values)
         else:
             values = self.addAndNorm(hist_hidden_enc, time_values)
         return values
