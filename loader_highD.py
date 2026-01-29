@@ -26,10 +26,10 @@ class HighdDataset(Dataset):
             T2 = scp.loadmat(track_file+'track_HighD_2.mat')['tracks']
             self.T = np.concatenate((T1, T2), axis=0)
         elif type == 'test':
-            self.D = scp.loadmat(traj_file+'TestSetHighD.mat')['traj']
-            T1  = scp.loadmat(track_file+'track_HighD_1.mat')['tracks']
-            T2 = scp.loadmat(track_file+'track_HighD_2.mat')['tracks']
-            self.T = np.concatenate((T1, T2), axis=0)
+            self.D = scp.loadmat(traj_file+'test_highd_mini.mat')['traj']
+            # T1  = scp.loadmat(track_file+'track_HighD_1.mat')['tracks']
+            # T2 = scp.loadmat(track_file+'track_HighD_2.mat')['tracks']
+            self.T = scp.loadmat(track_file+'track_highd_mini.mat')['tracks']
         self.type = type
         self.t_h = t_h  #
         self.t_f = t_f  #

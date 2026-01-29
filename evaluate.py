@@ -3,12 +3,9 @@ from __future__ import print_function
 import numpy as np
 import torch
 from config import *
-if args['dataset'] == 'ngsim':
-    import loader2 as lo
-elif args['dataset'] == "shrp2":
-    import loader_risky_time as lo
-else:
-    import loader_highD as lo
+
+import loader_risky_time as lo_shrp
+import loader_highD as lo_highd
 from torch.utils.data import DataLoader
 import pandas as pd
 
@@ -23,6 +20,7 @@ from FoePredict import FoePredict_risky_time, FoePredict_highd_time
 from risk_decoder_autobot_v1_time import Risk_Decoder_auto_time
 import matplotlib.cm as cm
 import pickle
+import argparse
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
@@ -124,7 +122,10 @@ class Evaluate():
         # accuracy = correct / nearest_mode_idxs.size(0)
         return t.sum(nll_loss) / t.sum(mask), nearest_trajs, maxprob_trajs
 
-    def main(self, name, val, writer):
+    def main(self, name, val, writer,dataset):
+        args['path'] = 'checkpoint/' + dataset
+        args['dataset'] = dataset  # highd shrp2
+        args['ego_goals_path'] = 'data/' + dataset + '/'  ###shrp2 highd
         model_step = 1
         args['train_flag'] = False
         l_path = args['path']
@@ -154,9 +155,9 @@ class Evaluate():
 
         if val:
             if args['dataset'] == "shrp2":
-                t2 = lo.RiskyDataset('shrp2/ValSetRisky_all1.mat')
+                t2 = lo_shrp.RiskyDataset('shrp2/ValSetRisky_all1.mat')
             else:
-                t2 = lo.HighdDataset('../RiskNet/highD/','../RiskNet/highD/','val')
+                t2 = lo_highd.HighdDataset('highD/','highD/','val')
                 args['num_worker'] = 2
 
             valDataloader = DataLoader(t2, batch_size=args['batch_size'], shuffle=False,
@@ -164,10 +165,10 @@ class Evaluate():
                                        collate_fn=t2.collate_fn)
         else:
             if args['dataset'] == "highd":
-                t2 = lo.HighdDataset('../RiskNet/highD/','../RiskNet/highD/', 'test')
+                t2 = lo_highd.HighdDataset('data/highD/','data/highD/', 'test')
                 args['num_worker'] = 1
             else:
-                t2 = lo.RiskyDataset('../RiskNet/RiskyTraj/TestSetRisky_all1.mat')
+                t2 = lo_shrp.RiskyDataset('data/shrp2/test_shrp_mini.mat')
      
             valDataloader = DataLoader(t2, batch_size=args['batch_size'], shuffle=False, num_workers=args['num_worker'],
                                        collate_fn=t2.collate_fn)
@@ -396,8 +397,13 @@ class Evaluate():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset", type=str, required=True, help="Dataset name")
+    args_dict = parser.parse_args()
+    print(args_dict.dataset)
+
     writer = SummaryWriter('vals')
     names = ['12']
     evaluate = Evaluate()
     for epoch in names:
-        evaluate.main(name=epoch, val=False, writer=False)
+        evaluate.main(name=epoch, val=False, writer=False,dataset=args_dict.dataset)

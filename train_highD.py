@@ -118,10 +118,10 @@ def main():
     generator.train()
     gdEncoder_all.train()
     foe_predict.train()
-    data_t1 = ['../RiskNet/highD/track_HighD_15.mat','../RiskNet/highD/TrainSetHighD_15.mat']
-    data_t2 = ['../RiskNet/highD/track_HighD_30.mat','../RiskNet/highD/TrainSetHighD_30.mat']
-    data_t3 = ['../RiskNet/highD/track_HighD_45.mat','../RiskNet/highD/TrainSetHighD_45.mat']
-    data_t4 = ['../RiskNet/highD/track_HighD_60.mat','../RiskNet/highD/TrainSetHighD_60.mat']
+    data_t1 = ['highD/track_HighD_15.mat','highD/TrainSetHighD_15.mat']
+    data_t2 = ['highD/track_HighD_30.mat','highD/TrainSetHighD_30.mat']
+    data_t3 = ['highD/track_HighD_45.mat','highD/TrainSetHighD_45.mat']
+    data_t4 = ['highD/track_HighD_60.mat','highD/TrainSetHighD_60.mat']
     datasets = [data_t1,data_t2, data_t3, data_t4]
 
     optimizer_g = optim.Adam(generator.parameters(), lr=learning_rate)
