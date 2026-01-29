@@ -1,0 +1,8 @@
+einops==0.8.2
+h5py==3.14.0
+matplotlib==3.10.8
+numpy==2.4.1
+pandas==3.0.0
+scipy==1.17.0
+torch==2.6.0+cu118
+tqdm==4.67.1
