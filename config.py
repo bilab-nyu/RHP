@@ -4,7 +4,7 @@ import numpy as np
 import torch as t
 args['path'] = 'checkpoint/shrp2'
 # -------------------------------------------------------------------------
-# 参数设置
+
 seed = 72
 random.seed(seed)
 np.random.seed(seed)
