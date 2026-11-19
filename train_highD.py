@@ -244,7 +244,7 @@ def main():
 
 
         save_model(name=str(epoch + 1), generator=generator, foe_predict=foe_predict, gdEncoder_all=gdEncoder_all)
-        evaluate.main(name=str(epoch + 1), val=True, writer = False)
+        evaluate.main(name=str(epoch + 1), val=True, writer = False, dataset='highd')
         scheduler_g.step()
         scheduler_foe.step()
         scheduler_gd_all.step()

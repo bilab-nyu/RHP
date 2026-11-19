@@ -122,7 +122,7 @@ class Evaluate():
         # accuracy = correct / nearest_mode_idxs.size(0)
         return t.sum(nll_loss) / t.sum(mask), nearest_trajs, maxprob_trajs
 
-    def main(self, name, val, writer,dataset):
+    def main(self, name, val, writer, dataset):
         args['path'] = 'checkpoint/' + dataset
         args['dataset'] = dataset  # highd shrp2
         args['ego_goals_path'] = 'data/' + dataset + '/'  ###shrp2 highd
