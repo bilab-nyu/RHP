@@ -6,7 +6,7 @@
 
 
 
-<img src="./data/vision.png" width="80%" alt="RHP models future risk across candidate trajectories and prediction horizons.">
+<img src="./data/vision.png" width="70%" alt="RHP models future risk across candidate trajectories and prediction horizons.">
 
 </div>
 
