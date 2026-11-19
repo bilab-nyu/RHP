@@ -6,7 +6,7 @@
 
 
 
-<img src="./data/vision.png" width="100%" alt="RHP models future risk across candidate trajectories and prediction horizons.">
+<img src="./data/vision.png" width="80%" alt="RHP models future risk across candidate trajectories and prediction horizons.">
 
 </div>
 
@@ -198,11 +198,7 @@ RHP/
 |-- train_shrp2.py                  # SHRP2 training
 |-- requirements.txt
 |-- data/                           # Mini datasets, intention templates, and vision.png
-|-- highD/                          # Generated highD training, validation, and test data
 |-- checkpoint/                     # Pretrained and experimental weights
-|-- analyze/                        # Risk, attention, and plotting utilities
-|-- baselines/                      # Comparison-model implementations
-`-- vals/                           # Evaluation logs
 ```
 
 ## Analysis and Baselines
